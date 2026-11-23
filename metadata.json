@@ -1,0 +1,6 @@
+{
+  "name": "ALLEN Aula — AI English Partner",
+  "description": "Real-time bidirectional voice English tutoring experience with a 3D virtual professor powered by Gemini Live API.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

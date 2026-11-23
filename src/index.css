@@ -1,0 +1,269 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: "Outfit", system-ui, -apple-system, sans-serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #f8fafc;
+    color: #0f172a;
+    font-family: var(--font-sans);
+    letter-spacing: 0.01em;
+    transition: background-color 180ms ease, color 180ms ease;
+  }
+
+  html.dark,
+  html.dark body,
+  html.dark #root {
+    background-color: #070b16;
+    color: #f1f5f9;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+}
+
+/* Custom sleek volume slider */
+input[type="range"].studio-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"].studio-slider::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 9999px;
+  background: rgba(148, 163, 184, 0.28);
+}
+
+input[type="range"].studio-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: #3b82f6;
+  border: 2px solid #f8fafc;
+  margin-top: -5px;
+  transition: transform 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+input[type="range"].studio-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+input[type="range"].studio-slider::-moz-range-track {
+  height: 4px;
+  border-radius: 9999px;
+  background: rgba(148, 163, 184, 0.28);
+}
+
+input[type="range"].studio-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: #3b82f6;
+  border: 2px solid #f8fafc;
+}
+
+/* ALLEN Characters — Studio SVG Motion, Blink, Gaze & Expression Transitions */
+svg.allen-dot {
+  overflow: visible;
+}
+
+.allen-bob {
+  animation: allen-bob 3.6s ease-in-out infinite;
+}
+.allen-hop {
+  animation: allen-hop 1.6s ease-in-out infinite;
+  transform-origin: 120px 270px;
+}
+.allen-tilt {
+  animation: allen-tilt 2s ease-in-out infinite;
+  transform-origin: 120px 270px;
+}
+.allen-sway {
+  animation: allen-sway 5s ease-in-out infinite;
+  transform-origin: 120px 270px;
+}
+.allen-sw {
+  animation: allen-sw 2.2s ease-in-out infinite alternate;
+}
+.allen-wave {
+  animation: allen-wave 1.1s ease-in-out infinite alternate;
+}
+.allen-step {
+  animation: allen-step 1.4s ease-in-out infinite alternate;
+}
+.allen-spark {
+  animation: allen-spark 1.6s ease-in-out infinite;
+  transform-origin: 120px 120px;
+}
+
+.allen-pose {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: 120px 270px;
+}
+
+svg.allen-dot[data-expr="listening"] .allen-pose {
+  transform: rotate(-4deg);
+}
+svg.allen-dot[data-expr="thinking"] .allen-pose {
+  transform: rotate(3deg);
+}
+svg.allen-dot[data-expr="joy"] .allen-pose {
+  animation: allen-joy 0.7s ease-in-out infinite;
+  transform-origin: 120px 270px;
+}
+
+.allen-eye {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: allen-blink 4.6s infinite;
+}
+.allen-eye.r {
+  animation-delay: 0.03s;
+}
+
+.allen-pupil {
+  animation: allen-look 7s ease-in-out infinite;
+}
+svg.allen-dot[data-expr="thinking"] .allen-pupil {
+  animation: none;
+  transform: translate(3px, -3px);
+}
+svg.allen-dot[data-expr="listening"] .allen-pupil {
+  animation: none;
+}
+
+svg.allen-dot .allen-eyes-closed {
+  display: none;
+}
+svg.allen-dot[data-eyes="closed"] .allen-eyes-open,
+svg.allen-dot[data-expr="joy"] .allen-eyes-open {
+  display: none;
+}
+svg.allen-dot[data-eyes="closed"] .allen-eyes-closed,
+svg.allen-dot[data-expr="joy"] .allen-eyes-closed {
+  display: inline;
+}
+
+@keyframes allen-bob {
+  50% {
+    transform: translateY(-6px);
+  }
+}
+@keyframes allen-hop {
+  0%,
+  100% {
+    transform: translateY(0) scaleY(0.97);
+  }
+  45% {
+    transform: translateY(-14px) scaleY(1.03);
+  }
+}
+@keyframes allen-tilt {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+@keyframes allen-sway {
+  50% {
+    transform: rotate(1.5deg);
+  }
+}
+@keyframes allen-sw {
+  from {
+    transform: rotate(-5deg);
+  }
+  to {
+    transform: rotate(6deg);
+  }
+}
+@keyframes allen-wave {
+  from {
+    transform: rotate(-10deg);
+  }
+  to {
+    transform: rotate(14deg);
+  }
+}
+@keyframes allen-step {
+  from {
+    transform: rotate(-6deg);
+  }
+  to {
+    transform: rotate(6deg);
+  }
+}
+@keyframes allen-spark {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+@keyframes allen-joy {
+  50% {
+    transform: translateY(-7px) rotate(2deg);
+  }
+}
+@keyframes allen-blink {
+  0%,
+  93%,
+  100% {
+    transform: scaleY(1);
+  }
+  96% {
+    transform: scaleY(0.1);
+  }
+}
+@keyframes allen-look {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(2.5px);
+  }
+  65% {
+    transform: translateX(-2.5px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .allen-bob,
+  .allen-hop,
+  .allen-tilt,
+  .allen-sway,
+  .allen-sw,
+  .allen-wave,
+  .allen-step,
+  .allen-spark,
+  .allen-eye,
+  .allen-pupil,
+  .allen-pose {
+    animation: none !important;
+  }
+}
